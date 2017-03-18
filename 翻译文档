@@ -1,0 +1,56 @@
+
+
+  webpack是现代JavaScript的模块加载器兼打包工具。具有很高的可配置性，其有四个核心概念：
+
+1. Entry（主入口）
+
+  webpack 创建一个你项目的所有依赖关系图。这个依赖关系的起点被称为入口。这个入口告诉webpack从哪里开始，遵循依赖图知道打包什么文件。您可以将应用程序的入口点视为网页上下文的根节点，或第一个文件以打开应用程序。
+在我们定义使用入门性质WebPACK切入点我们WebPACK配置对象。
+最简单的例子如下：
+
+2. Output（输出）
+
+  一旦你把你所有的资源打包，你还需要告诉webpack去哪里打包你的应用。的输出（output）告诉webpack如何对待打包后的代码。在上面的例子中，我们使用output.filename和output.path属性告诉我们名字和webpack打包我们希望它是输出到哪里。
+
+
+3. Loaders（装载机）
+   的目标是让所有的资产在你的项目是webpack的关注事项，和没有浏览器是不必考虑这些。（这并不意味着他们都被打包在一起）。webpack（HTML, CSS, sass, jpg....）都看成模块。然而, webpack只有解析JavaScript。
+
+在你添加到依赖后webpack中Loaders会将这些文件（css, less/sass, vue等等）到能解析模块。
+
+总的来看，Loaders有两个目的。
+
+（1. 确定某个文件应该由哪个装载机装载转换。（test 属性）
+（2. 转换该文件，以便它可以被添加到您的依赖关系图（并最终实现打包）。（use属性）
+
+The configuration above has defined a rules property for a single module with two required properties: test, and use. This tells webpack's compiler the following:
+
+"Hey webpack compiler, when you come across a path that resolves to a '.js' or '.jsx' file inside of a require()/import statement, use the babel-loader to transform it before you add it to the bundle".
+
+
+4. Plugins（插件）
+  由于装载机只执行变换每一个文件的基础上，插件是最常用的（但不限于）表演动作和自定义功能在“编辑”或“块”你捆绑模块（等等）。该webpack插件系统极其强大，可定制。
+   为了使用一个插件，你只需要require('该模块'), 并添加到插件队列。大多数插件可自定义通过选项。由于你可以在一个配置中多次使用插件来达到不同的目的，你可以通过new创建一个新的实例。
+
+   const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+   const webpack = require('webpack'); //to access built-in plugins
+   const path = require('path');
+
+   const config = {
+     entry: './path/to/my/entry/file.js',
+     output: {
+       path: path.resolve(__dirname, 'dist'),
+       filename: 'my-first-webpack.bundle.js'
+     },
+     module: {
+       rules: [
+         {test: /\.(js|jsx)$/, use: 'babel-loader'}
+       ]
+     },
+     plugins: [
+       new webpack.optimize.UglifyJsPlugin(),
+       new HtmlWebpackPlugin({template: './src/index.html'})
+     ]
+   };
+
+   module.exports = config;
