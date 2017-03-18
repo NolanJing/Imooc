@@ -1,0 +1,15 @@
+1.npm install webpack -g  //全局安装webpack
+
+2.npm init -y // 创建一个默认的 package.json
+                                   // script 可以实现绑定命令行  如 (npm run dev)
+
+3. npm install webpack --save-dev  // 项目内安装webpack webpack-dev-server
+                                   // 可以实现本地小型服务器
+
+4.  loader: 'babel' ->      loader: 'babel-loader'
+
+GET http://st-n.ads5-adnow.com/js/adv_out.js net::ERR_BLOCKED_BY_CLIENT
+GET http://st.adxxx.org/js/adv_out.js net::ERR_BLOCKED_BY_CLIENT
+
+ad-blocker will block it.
+
